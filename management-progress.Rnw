@@ -30,21 +30,18 @@
 \end{itemize}
 
 
-\section*{Abstract}
-Communities at the border of Makgadikgadi Pans National Park in Botswana make up part of a social-ecological system which includes people, domestic animals, wild animals, parasites, plants, and other organisms. People interact with the rest of the system by raising livestock, planting crops, and applying management strategies such as building fences, using pesticides, or digging wells. At this point, decisions on the best methods for management are generally not based on economic outcomes. The goal of this project is to develop a way to conduct cost-benefit analyses for various management strategies that incorporates impacts for multiple players in the system - including conservation and tourism as well as livelihoods of the local people. The method we are currently using is called 'qualitative modeling'. The first step is to develop a network model of the ecosystem based on Lotka-Volterra interactions, incorporating uncertain links. Next, we subject simulations of this network to combinations of press perturbations which represent management strategies. The results of the press perturbations indicate whether certain nodes in the network are likely to increase or decrease following the perturbation. These results will then be incorporated into a cost-benefit equation based on estimated utility functions that describe the value of each node. In this way, management strategies can be compared based on their predicted cost-benefit ratio, as well as the uncertainty of the outcome for each node. 
+\section{Introduction}
 
+Communities at the border of Makgadikgadi Pans National Park in Botswana make up part of a social-ecological system which includes people, domestic animals, wild animals, parasites, plants, and other organisms. People interact with the rest of the system by raising livestock, planting crops, and applying management strategies such as building fences, using pesticides, or digging wells. At this point, decisions on the best methods for management are generally not based on economic outcomes. The goal of this project is to develop a way to conduct cost-benefit analyses for various management strategies that incorporates impacts for multiple players in the system - including conservation and tourism as well as livelihoods of the local people. The method I am currently using is called 'qualitative modeling'. The first step is to develop a network model of the ecosystem based on Lotka-Volterra interactions, incorporating uncertain links. Next, I subjected simulations of this network to combinations of press perturbations which represent management strategies. The results of the press perturbations indicate whether certain nodes in the network are likely to increase or decrease following the perturbation. These results will then be incorporated into a cost-benefit equation based on estimated utility functions that describe the value of each node. In this way, management strategies can be compared based on their predicted cost-benefit ratio, as well as the uncertainty of the outcome for each node. 
 
-
-\section{Introduction} 
-
-The goal of this project is to develop some way of assessing how management strategies affect the whole ecosystem in Botswana. I've gone through a few ideas of how to model this and at the moment am focusing on 'qualitative models' based on \cite{Raymond2011, Dambacher2003}. The idea is to simulate an ecosystem and calculate the effect of increasing or decreasing certain populations and see what the new equilibrium will be. This is known as a press perturbation \cite{Bender1984}. If I can estimate how certain aspects of the ecosystem are valued compared to others, then I can use this method to see how certain management strategies compare to each other economically while incorporating the implications for conservation as well as for the needs of the communities. 
+%%%%%% TI've gone through a few ideas of how to model this and at the moment am focusing on 'qualitative models' based on \cite{Raymond2011, Dambacher2003}. The idea is to simulate an ecosystem and calculate the effect of increasing or decreasing certain populations and see what the new equilibrium will be. This is known as a press perturbation \cite{Bender1984}. If I can estimate how certain aspects of the ecosystem are valued compared to others, then I can use this method to see how certain management strategies compare to each other economically while incorporating the implications for conservation as well as for the needs of the communities. 
 
 
 \section{Methods}
 
 \subsection{Defining a network}
 
-The network model is defined by linked Lotka-Volterra-type equations. This can be written as a system of differential equations as defined by Hosack, Hayes and Dambacher as:
+The network model is defined by linked Lotka-Volterra-type equations. This can be written as a system of differential equations as defined by Hosack, Hayes and Dambacher:
 
 \[\frac{dX_{i}}{dt} = f_{i}(X_{1},...,X_{n}; p_{1},...,p_{k})\] \[i = 1...n, k = 1...m \]
 
@@ -79,7 +76,7 @@ print(xtable(network, caption="Defined interactions between nodes; ab = abiotic/
 @
 
 \paragraph{}
-I defined the model to include nine possible classes of interaction representing every possible combination of positive, negative, and none between two nodes:
+I defined the model to have 17 nodes representing relevant groups of organisms in the system, including separating parasites into infective and within-host stages. Each possible interaction is defined as one of nine possible classes representing combinations of positive, negative, and no interactions between two nodes:
 
 \begin{itemize}
 \item \textbf{ab}, an abiotic or unidirectional increase, such as the effect water has on everything, $a_{ji}$ is 0
@@ -93,20 +90,16 @@ I defined the model to include nine possible classes of interaction representing
 \item \textbf{in}, unidirectional decrease, where $a_{ji}$ is 0
 \end{itemize}
 
-This is based on the approach taken by \cite{Raymond2011} in their assessment of the impact of eradication of invasive species on Macquarie Island. They define their network in a similar manner and go on to simulate values for each $a_{ij}$. First, in order to deal with unknown links, they look at each possible combination of unknown links existing or not ($2^{num of unknown links}), and simulate 1000 Lyapunov stable (stable around equilibrium, all real parts of eigenvalues are negative) values for \textbf{A} for each combination, resulting in 131 million matrices. 
+This is based on the approach taken by \cite{Raymond2011} in their assessment of the impact of eradication of invasive species on Macquarie Island. They define their network in a similar manner and go on to simulate values for each $a_{ij}$. First, in order to deal with unknown links, they look at each possible combination of \emph{x} unknown links existing or not ($2^{x}$), and simulate 1000 Lyapunov stable (stable around equilibrium, all real parts of eigenvalues are negative) values for \textbf{A} for each combination, resulting in 131 million matrices. 
 
-Instead of taking this approach, which leads to equal weighting of each combination regardless of the likelihood of that combination yielding a stable matrix, I simulate values so that each unknown has an equal probability of being negative, zero, or positive. Various changes to how the values are chosen make it more or less likely that a simulated \textbf{A} will be stable, so many iterations are necessary to reach a large number of stable simulations.
-
-<<sim, cache=TRUE, echo=TRUE,results='hide'>>=
-# put in the code for simulating here
-@
-
-
-
+Instead of taking this approach, which leads to equal weighting of each combination regardless of the likelihood of that combination yielding a stable matrix, I simulate values so that each unknown has an equal probability of being negative, zero, or positive. Various changes to how each $a_{ij}$ is chosen makes it more or less likely that a simulated \textbf{A} will be stable, but in general many iterations are necessary to reach a large number of stable simulations (25+ unstable matrices generated per stable matrix). 
 
 
 \subsection{Perturbations on a network}
 
+Simulation of the matrices 
+
+\subsection{Incorporating management strategies}
 
 
 \subsection{Cost-benefit analysis and utility functions}

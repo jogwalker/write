@@ -6,9 +6,17 @@
 
 \begin{document}
 
-\title{Project 1: Networks}
+\title{Project 1: Networks and Host-Breadth}
 \author{Josephine Walker}
 \maketitle
+
+\section*{Collaborators}
+\begin{itemize}
+  \item Michael McCarthy (UMelb)
+  \item Peter Vesk (UMelb)
+  \item Michaela Plein (UMelb)
+\end{itemize}
+
 
 \section{Introduction} 
 

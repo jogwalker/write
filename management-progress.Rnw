@@ -32,9 +32,10 @@
 
 \section{Introduction}
 
-Communities at the border of Makgadikgadi Pans National Park in Botswana make up part of a social-ecological system which includes people, domestic animals, wild animals, parasites, plants, and other organisms. People interact with the rest of the system by raising livestock, planting crops, and applying management strategies such as building fences, using pesticides, or digging wells. At this point, decisions on the best methods for management are generally not based on economic outcomes. The goal of this project is to develop a way to conduct cost-benefit analyses for various management strategies that incorporates impacts for multiple players in the system - including conservation and tourism as well as livelihoods of the local people. The method I am currently using is called 'qualitative modeling'. The first step is to develop a network model of the ecosystem based on Lotka-Volterra interactions, incorporating uncertain links. Next, I subjected simulations of this network to combinations of press perturbations which represent management strategies. The results of the press perturbations indicate whether certain nodes in the network are likely to increase or decrease following the perturbation. These results will then be incorporated into a cost-benefit equation based on estimated utility functions that describe the value of each node. In this way, management strategies can be compared based on their predicted cost-benefit ratio, as well as the uncertainty of the outcome for each node. 
+Communities at the border of Makgadikgadi Pans National Park in Botswana make up part of a social-ecological system which includes people, domestic animals, wild animals, parasites, plants, and other organisms. People interact with the rest of the system by raising livestock, planting crops, and applying management strategies such as building fences, using pesticides, or digging wells. At this point, decisions on the best methods for management are generally not based on economic outcomes. The goal of this project is to develop a way to conduct cost-benefit analyses for various management strategies that incorporates impacts for multiple players in the system - including conservation and tourism as well as livelihoods of the local people. The method I am currently using is called `qualitative modeling' and is based on \cite{Raymond2011, Dambacher2003}. The idea is to simulate an ecosystem and calculate the effect of increasing or decreasing certain populations and see what the new equilibrium will be. This is known as a press perturbation \cite{Bender1984}.
 
-%%%%%% TI've gone through a few ideas of how to model this and at the moment am focusing on 'qualitative models' based on \cite{Raymond2011, Dambacher2003}. The idea is to simulate an ecosystem and calculate the effect of increasing or decreasing certain populations and see what the new equilibrium will be. This is known as a press perturbation \cite{Bender1984}. If I can estimate how certain aspects of the ecosystem are valued compared to others, then I can use this method to see how certain management strategies compare to each other economically while incorporating the implications for conservation as well as for the needs of the communities. 
+The first step is to develop a network model of the ecosystem based on Lotka-Volterra interactions, incorporating uncertain links. Next, I subject simulations of this network to combinations of press perturbations which represent management strategies. The results of the press perturbations indicate whether certain nodes in the network are likely to increase or decrease following the perturbation. I plan to conduct interviews with communities and government officials in Botswana to estimate how certain aspects of the system or certain nodes are valued compared to others. I will then incorporate these results into cost-benefit equations that incorporate implications for conservation as well as the needs of the communities. In this way, management strategies can be compared based on their predicted cost-benefit ratio, as well as the uncertainty of the outcome for each node. 
+ 
 
 
 \section{Methods}
@@ -58,7 +59,7 @@ Each element of \textbf{A}, $a_{ij}$, therefore represents the effect of changes
 
 \[ a_{ij} = \left. \frac{\partial f_{i}}{\partial X_{j}} \right | _{*} \]  where * denotes evaluation at equilibrium. 
 
-\paragraph{}
+%\paragraph{}
 The values of each individual parameter $p_{k}$ in the Lotka-Volterra equations or each $a_{ij}$ in \textbf{A} are not known, but the results of the model are likely to be highly sensitive to the values chosen \cite{Hosack2008}. Instead of defining values, I defined the biological class of interaction for each cell in the matrix (for example: predator, prey, competition) in order to decide whether $a_{ij}$ will be positive or negative  (Table \ref{tab:network}). This is one sense in which the model is 'qualitative'.
 
 <<setup, cache=TRUE,echo=FALSE,results='hide'>>=
@@ -75,7 +76,7 @@ print(xtable(network, caption="Defined interactions between nodes; ab = abiotic/
       floating.environment="sidewaystable")
 @
 
-\paragraph{}
+%\paragraph{}
 I defined the model to have 17 nodes representing relevant groups of organisms in the system, including separating parasites into infective and within-host stages. Each possible interaction is defined as one of nine possible classes representing combinations of positive, negative, and no interactions between two nodes:
 
 \begin{itemize}
@@ -117,20 +118,20 @@ McDermott describes how the economics of rural livestock production depend on th
 \label{fig:economic_axes}
 \end{figure}
 
-\paragraph{}
+%\paragraph{}
 
 In practice, I think I can incorporate this issue into the model by comparing a few subsets of simulated models where some defined interaction factor is high/med/low. I have not thought much about this yet, but perhaps I can subset the simulated networks by using cutoffs for strength of links between domestic and wild animals. For example, simulated networks with highly competitive interactions between domestic and wild grazers, and/or with high levels of predation of domestic animals by wild carnivores, would fall into the high interaction category. This could be subsetted from all simulated networks or new networks could be simulated with these additional constraints. 
 
-\paragraph{}
+%\paragraph{}
 
 The goal of dividing communities by level of interaction would be to compare how these differences affect the recommended management strategy from the perspective of a particular community. In addition, it will be useful to define whether individual communities may be affected differently by the same management strategy.
 
 \subsection{Limitations and some other possible methods}
 
 The qualitative modeling method defines a framework for assessment of the economic impact of a management strategy based on the modeled structure of the system. By simulating many possible networks, we incorporate the high levels of uncertainty about the model structure. Essentially, everything is highly uncertain and yet we try to make conclusions anyway. By using a complex model, there are so many parameters to be defined and this contributes to the uncertainty. I have thought a little bit about whether it would be possible to use a simpler model. 
-\paragraph{}
+%\paragraph{}
 From what I have seen, there is only one study which attempts to economically examine the impact of wildlife contact on communities \cite{Chaminuka2012}. They do an analysis which incorporates potential costs and benefits to communities of living near the park, but they don't consider the impact of humans on the wildlife or of the impact of different management strategies. I could use a similar method with additional factors included and estimate parameters based on expert opinion instead of using simulated networks. 
-\paragraph{}
+% \paragraph{}
 Another study explicitly models wildebeest population growth in relation to poaching pressure by communities in order to determine the risk of collapse of the wildebeest population under different management strategies \cite{Barrett1998}. I could potentially do something similar to this, where I focus on transmission of parasites between domestic and wild populations using fairly simple population growth models (with competition just between two species) which would be possible to parameterize explicitly. This would allow me to estimate costs and benefits of parasite management but would neglect many interactions and effects.
 
 

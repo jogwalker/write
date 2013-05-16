@@ -1,0 +1,28 @@
+\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+
+\usepackage{geometry} % Required to change the page size to A4
+\geometry{a4paper} % Set the page size to be A4 as opposed to the default US Letter
+\usepackage{cite}
+
+\begin{document}
+
+\title{Project 1: Networks}
+\author{Josephine Walker}
+\maketitle
+
+\section{Introduction} 
+
+I am interested in examining parasite transmission from an ecological perspective - one that incorporates multiple hosts and multiple parasites. This interest is based on the assumption that parasites are transmitted across multiple species. Studies of parasite species in domestic and wild host species have shown that certain parasite species are indeed found in multiple hosts. In community ecology, bipartite networks are used to define interactions between two trophic levels of species, such as plants and pollinators, predators and prey, or parasites and hosts. Indices based on diversity of host use or parasite load can be used to define which species are more specialist or generalist. In community ecology, these indices have implications for conservation in that specialists are highly dependent on the state of another species for their own survival, while generalists are likely to be able to adapt if one of their hosts goes extinct. In the case of host/parasite interactions in a multi-species system, generalist parasites in all hosts may be affected by management or treatment of one host. By defining which species are generalist and which are specialist, it will be possible to quantify the level of interaction at the wildlife-livestock interface.
+
+\paragraph{}
+
+There are some limitations to the community ecology bipartite network approach. The main limitation is that indices are defined exclusively from the data put in - so if a link has been missed there is no way to account for it. There is no way to explicitly incorporate uncertainty. One thing that I am looking into working on with one of the PhD students at the University of Melbourne (Michaela Plein) is a comparison of traditional community ecology indices and Bayesian methods for calculating similar indices. I have started to explore this using a Bayesian Hierarchical Model which explicitly incorporates uncertainty and allows for 'sharing' of information at a higher level than the data (eg, calculating probabilities for a certain species based on all species within its genus). This is based on \cite{Vesk2010} and I worked with Peter Vesk on adapting his method to parasites.
+
+\paragraph{}
+
+To go further with the Bayesian method, I would like to use it to calculate covariance between parasite species or between host species. This will indicate which host species tend to share the same parasites, and which parasite species tend to share host species. 
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+
+\end{document}
